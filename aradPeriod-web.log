@@ -1,0 +1,47 @@
+2020-07-27 11:42:55.579  INFO 15720 --- [restartedMain] c.e.demo.web.AradPeriodApplication       : Starting AradPeriodApplication on LAPTOP-5MAQ8TC6 with PID 15720 (D:\IDEAProject\aradPeriod\aradPeriod-web\target\classes started by 62429 in D:\IDEAProject\aradPeriod)
+2020-07-27 11:42:55.582 DEBUG 15720 --- [restartedMain] c.e.demo.web.AradPeriodApplication       : Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+2020-07-27 11:42:55.582  INFO 15720 --- [restartedMain] c.e.demo.web.AradPeriodApplication       : The following profiles are active: dev
+2020-07-27 11:42:55.638  INFO 15720 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-27 11:42:55.638  INFO 15720 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-27 11:42:56.647  WARN 15720 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'sysMenuMapper' and 'com.example.demo.web.mapper.SysMenuMapper' mapperInterface. Bean already defined with the same name!
+2020-07-27 11:42:56.648  WARN 15720 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'sysModuleMapper' and 'com.example.demo.web.mapper.SysModuleMapper' mapperInterface. Bean already defined with the same name!
+2020-07-27 11:42:56.648  WARN 15720 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'sysResourceMapper' and 'com.example.demo.web.mapper.SysResourceMapper' mapperInterface. Bean already defined with the same name!
+2020-07-27 11:42:56.649  WARN 15720 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'sysRoleMapper' and 'com.example.demo.web.mapper.SysRoleMapper' mapperInterface. Bean already defined with the same name!
+2020-07-27 11:42:56.649  WARN 15720 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'sysRoleResMapper' and 'com.example.demo.web.mapper.SysRoleResMapper' mapperInterface. Bean already defined with the same name!
+2020-07-27 11:42:56.649  WARN 15720 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'sysUserMapper' and 'com.example.demo.web.mapper.SysUserMapper' mapperInterface. Bean already defined with the same name!
+2020-07-27 11:42:56.649  WARN 15720 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'sysUserRoleMapper' and 'com.example.demo.web.mapper.SysUserRoleMapper' mapperInterface. Bean already defined with the same name!
+2020-07-27 11:42:56.649  WARN 15720 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.example.demo.web.mapper]' package. Please check your configuration.
+2020-07-27 11:42:56.893  INFO 15720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-07-27 11:42:56.897  INFO 15720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-07-27 11:42:56.949  INFO 15720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34ms. Found 0 Redis repository interfaces.
+2020-07-27 11:42:57.674  INFO 15720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9091 (http)
+2020-07-27 11:42:57.684  INFO 15720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-27 11:42:57.684  INFO 15720 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-07-27 11:42:57.853  INFO 15720 --- [restartedMain] o.a.c.c.C.[.[.[/aradPeriod-web]          : Initializing Spring embedded WebApplicationContext
+2020-07-27 11:42:57.853  INFO 15720 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2215 ms
+2020-07-27 11:42:58.327  INFO 15720 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2020-07-27 11:43:01.822  INFO 15720 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-07-27 11:43:02.280  WARN 15720 --- [restartedMain] c.b.m.core.toolkit.TableInfoHelper       : Warn: Could not find @TableId in Class: com.example.demo.web.entity.SysRoleRes.
+2020-07-27 11:43:02.340  WARN 15720 --- [restartedMain] c.b.m.core.toolkit.TableInfoHelper       : Warn: Could not find @TableId in Class: com.example.demo.web.entity.SysUserRole.
+2020-07-27 11:43:02.708  INFO 15720 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-07-27 11:43:02.833  INFO 15720 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-27 11:43:02.875  INFO 15720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-07-27 11:43:02.976  WARN 15720 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2020-07-27 11:43:03.337  INFO 15720 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-07-27 11:43:03.356  INFO 15720 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-07-27 11:43:03.386  INFO 15720 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-07-27 11:43:03.794  INFO 15720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9091 (http) with context path '/aradPeriod-web'
+2020-07-27 11:43:03.797  INFO 15720 --- [restartedMain] c.e.demo.web.AradPeriodApplication       : Started AradPeriodApplication in 8.876 seconds (JVM running for 11.505)
+2020-07-27 11:43:42.267  INFO 15720 --- [http-nio-9091-exec-1] o.a.c.c.C.[.[.[/aradPeriod-web]          : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-27 11:43:42.268  INFO 15720 --- [http-nio-9091-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-27 11:43:42.278  INFO 15720 --- [http-nio-9091-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2020-07-27 11:43:42.828  INFO 15720 --- [http-nio-9091-exec-1] c.e.d.common.util.VerificationCodeUtil   : 验证码生成成功：aek7
+2020-07-27 11:43:42.947  INFO 15720 --- [http-nio-9091-exec-1] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2020-07-27 11:43:42.949  INFO 15720 --- [http-nio-9091-exec-1] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2020-07-27 11:44:29.283  INFO 15720 --- [http-nio-9091-exec-3] c.example.demo.web.ctrl.OpenController   : userName  :system  password  :123456 vercode：aek7
+2020-07-27 11:44:31.041  INFO 15720 --- [http-nio-9091-exec-4] c.e.d.common.util.VerificationCodeUtil   : 验证码生成成功：43b3
+2020-07-27 11:44:34.876  INFO 15720 --- [http-nio-9091-exec-6] c.example.demo.web.ctrl.OpenController   : userName  :system  password  :123456 vercode：43b3
+2020-07-27 11:44:35.014 DEBUG 15720 --- [http-nio-9091-exec-6] c.e.d.w.m.S.querySysUserByNameAndPwd     : ==>  Preparing: SELECT su.user_id userId, su.user_name userName, su.password password, su.user_real_name userRealName, su.user_code userCode, su.depart_id departId, DATE_FORMAT(su.login_date,'%Y-%m-%d %H:%i:%s') loginDate, su.user_photo userPhoto, su.user_phone userPhone, su.user_qq userQq, su.user_email userEmail, su.delete_flag deleteFlag, su.role_id roleId, sr.role_name roleName FROM sys_user su LEFT JOIN sys_role sr ON sr.role_id = su.role_id WHERE su.user_name = ? AND su.password = ? 
+2020-07-27 11:44:35.153 DEBUG 15720 --- [http-nio-9091-exec-6] c.e.d.w.m.S.querySysUserByNameAndPwd     : ==> Parameters: system(String), 123456(String)
+2020-07-27 11:44:35.220 DEBUG 15720 --- [http-nio-9091-exec-6] c.e.d.w.m.S.querySysUserByNameAndPwd     : <==      Total: 1
+2020-07-27 11:44:35.310  INFO 15720 --- [http-nio-9091-exec-6] c.example.demo.web.ctrl.OpenController   : token  :eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNTk1ODIxNDc1LCJleHAiOjE1OTU4Mjg2NzV9.1Bd51qgxKK9UlHd0DZDpfd4-398-myC7OjkWyKqzWOdHww5U-XWX7mVtvGZJjO1fvUV9xdtpjfjJCJPyT0p_-w

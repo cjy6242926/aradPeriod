@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>用户首页</title>
+<link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" />
+</head>
+<body>
+	<div class="layui-fluid">
+		<div class="layui-row layui-col-space15">
+			<div class="layui-card">
+				<div class="layui-card-header">所有用户查询</div>
+				<div class="layui-card-body">
+					<form class="layui-form">
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button type="button" lay-submit
+									lay-filter="LAY-user-front-submit-find-all" class="layui-btn">查询所有</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script th:src="@{/static/layui/layui.js}"></script>
+<script>
+	layui.use([ 'form', 'jquery', 'laydate' ], function() {
+		var $ = layui.$, form = layui.form, laydate = layui.laydate;
+		laydate.render({
+			elem : '#dateOne',
+			type : 'datetime'
+		});
+		//查询所有用户
+		form.on('submit(LAY-user-front-submit-find-all)', function(data) {
+			//console.log("查询所有打印数据", data);
+			//return false;
+			var field = data.field; //获取提交的字段
+			$.ajax({
+				type : "get",
+				url : 'http://127.0.0.1:9091/aradPeriod-web/userTest/getAllUsers',
+				async : true,
+				dataType : 'json',
+				data : {},
+				xhrFields : {
+					withCredentials : true
+				},
+				success : function(res) {
+					console.log(res.data);
+					if (res.code == '01') {
+						layer.msg('查询所有用户成功', {
+							icon : 1,
+							time : 2000
+						//2秒关闭（如果不配置，默认是3秒）
+						});
+					} else {
+						layer.msg('查询所有用户失败', {
+							icon : 5,
+							time : 2000
+						//2秒关闭（如果不配置，默认是3秒）
+						});
+					}
+				},
+				error : function() {
+					layer.msg('系统繁忙', {
+						icon : 2,
+						time : 3000
+					});
+				}
+			});
+		})
+	})
+</script>
+</html>

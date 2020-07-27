@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.web.mapper.SysResourceMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap"
+		type="com.example.demo.web.entity.SysResource">
+		<id column="res_id" property="resId" />
+		<result column="res_name" property="resName" />
+		<result column="res_type" property="resType" />
+		<result column="res_value" property="resValue" />
+		<result column="module_id" property="moduleId" />
+	</resultMap>
+
+	<select id="listResources"
+		resultType="com.example.demo.web.entity.SysResource">
+		SELECT
+		sr.res_id resId,
+		sr.res_name resName,
+		sr.res_type resType,
+		sr.res_value resValue,
+		sr.module_id moduleId,
+		sm.module_name moduleName
+		FROM sys_resource sr
+		LEFT JOIN sys_module sm ON sm.module_id = sr.module_id
+		<where>
+			<if test="query.resName != null and query.resName != ''">
+				AND sr.res_name LIKE CONCAT('%',#{query.resName},'%')
+			</if>
+			<if test="query.resType != null and query.resType != ''">
+				AND sr.res_type = #{query.resType}
+			</if>
+			<if test="query.resValue != null and query.resValue != ''">
+				AND sr.res_value = #{query.resValue}
+			</if>
+			<if test="query.moduleId != null and query.moduleId != ''">
+				AND sr.module_id = #{query.moduleId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="querySysResourceById"
+		resultType="com.example.demo.web.entity.SysResource">
+		SELECT
+		sr.res_id resId,
+		sr.res_name resName,
+		sr.res_type resType,
+		sr.res_value resValue,
+		sr.module_id moduleId,
+		sm.module_name moduleName
+		FROM sys_resource sr
+		LEFT JOIN sys_module sm ON sm.module_id = sr.module_id
+		WHERE sr.res_id = #{id}
+	</select>
+
+</mapper>

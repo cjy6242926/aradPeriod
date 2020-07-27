@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.web.mapper.SysUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.web.entity.SysUser">
+        <id column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="password" property="password" />
+        <result column="user_real_name" property="userRealName" />
+        <result column="user_code" property="userCode" />
+        <result column="depart_id" property="departId" />
+        <result column="login_date" property="loginDate" />
+        <result column="user_photo" property="userPhoto" />
+        <result column="user_phone" property="userPhone" />
+        <result column="user_qq" property="userQq" />
+        <result column="user_email" property="userEmail" />
+        <result column="delete_flag" property="deleteFlag" />
+        <result column="role_id" property="roleId" />
+    </resultMap>
+    
+    <select id="querySysUserById" resultType="com.example.demo.web.entity.SysUser">
+    	SELECT
+	    	su.user_id userId,
+	    	su.user_name userName,
+	    	su.password password,
+	    	su.user_real_name userRealName,
+	    	su.user_code userCode,
+	    	su.depart_id departId,
+	    	DATE_FORMAT(su.login_date,'%Y-%m-%d %H:%i:%s') loginDate,
+	    	su.user_photo userPhoto,
+	    	su.user_phone userPhone,
+	    	su.user_qq userQq,
+	    	su.user_email userEmail,
+	    	su.delete_flag deleteFlag,
+	    	su.role_id roleId,
+	    	sr.role_name roleName
+    	FROM sys_user su
+    	LEFT JOIN sys_role sr ON sr.role_id = su.role_id
+    	WHERE su.user_id = #{id}
+    </select>
+    
+    <select id="iPageSysUser" resultType="com.example.demo.web.entity.SysUser">
+    	SELECT
+	    	su.user_id userId,
+	    	su.user_name userName,
+	    	su.password password,
+	    	su.user_real_name userRealName,
+	    	su.user_code userCode,
+	    	su.depart_id departId,
+	    	DATE_FORMAT(su.login_date,'%Y-%m-%d %H:%i:%s') loginDate,
+	    	su.user_photo userPhoto,
+	    	su.user_phone userPhone,
+	    	su.user_qq userQq,
+	    	su.user_email userEmail,
+	    	su.delete_flag deleteFlag,
+	    	su.role_id roleId,
+	    	sr.role_name roleName
+    	FROM sys_user su
+    	LEFT JOIN sys_role sr ON sr.role_id = su.role_id
+    	<where>
+    		<if test="query.userName != null and query.userName != ''">
+    			AND su.user_name LIKE CONCAT('%',#{query.userName},'%')
+    		</if>
+    		<if test="query.password != null and query.password != ''">
+    			AND su.password = #{query.password}
+    		</if>
+    		<if test="query.userRealName != null and query.userRealName != ''">
+    			AND su.user_real_name = #{query.userRealName}
+    		</if>
+    		<if test="query.userCode != null and query.userCode != ''">
+    			AND su.user_code = #{query.userCode}
+    		</if>
+    		<if test="query.departId != null and query.departId != ''">
+    			AND su.depart_id = #{query.departId}
+    		</if>
+    		<if test="query.userPhone != null and query.userPhone != ''">
+    			AND su.user_phone LIKE CONCAT('%',#{query.userPhone},'%')
+    		</if>
+    		<if test="query.deleteFlag != null and query.deleteFlag != ''">
+    			AND su.delete_flag = #{query.deleteFlag}
+    		</if>
+    		<if test="query.roleId != null and query.roleId != ''">
+    			AND su.role_id = #{query.roleId}
+    		</if>
+    	</where>
+    	ORDER BY su.user_id DESC
+    </select>
+    
+    <select id="querySysUserByNameAndPwd" resultType="com.example.demo.web.entity.SysUser">
+    	SELECT
+	    	su.user_id userId,
+	    	su.user_name userName,
+	    	su.password password,
+	    	su.user_real_name userRealName,
+	    	su.user_code userCode,
+	    	su.depart_id departId,
+	    	DATE_FORMAT(su.login_date,'%Y-%m-%d %H:%i:%s') loginDate,
+	    	su.user_photo userPhoto,
+	    	su.user_phone userPhone,
+	    	su.user_qq userQq,
+	    	su.user_email userEmail,
+	    	su.delete_flag deleteFlag,
+	    	su.role_id roleId,
+	    	sr.role_name roleName
+    	FROM sys_user su
+    	LEFT JOIN sys_role sr ON sr.role_id = su.role_id
+    	WHERE su.user_name = #{query.userName} AND su.password = #{query.password}
+    </select>
+
+</mapper>

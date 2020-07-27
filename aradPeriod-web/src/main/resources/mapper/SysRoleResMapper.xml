@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.web.mapper.SysRoleResMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap"
+		type="com.example.demo.web.entity.SysRoleRes">
+		<result column="role_id" property="roleId" />
+		<result column="res_id" property="resId" />
+	</resultMap>
+
+	<delete id="deleteSysRoleResByModel">
+		DELETE FROM sys_role_res
+		<where>
+			<if test="query.roleId != null and query.roleId != ''">
+				AND role_id = #{query.roleId}
+			</if>
+			<if test="query.resId != null and query.resId != ''">
+				AND res_id = #{query.resId}
+			</if>
+		</where>
+	</delete>
+
+	<insert id="insertSysRoleRes" parameterType="java.util.List">
+		INSERT INTO sys_role_res
+			(
+			role_id,
+			res_id
+			)
+		VALUES
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			#{item.roleId},
+			#{item.resId}
+			)
+		</foreach>
+	</insert>
+	
+	<select id="queryMenu" resultType="com.example.demo.web.entity.Node">
+		SELECT
+			sm.menu_id id,
+			sm.menu_name name,
+			sm.menu_level level,
+			sm.leaf_flag leafFlagId,
+			sm.module_id moduleId,
+			sm.menu_value link,
+			sm.p_menu_id parentId,
+			sm.menu_sort menuSort,
+			sm.menu_icon menuIcon,
+			sm.leaf_flag leaf,
+			smo.module_name moduleName,
+			sr.res_id resId
+		FROM sys_menu sm 
+		LEFT JOIN sys_module smo ON sm.module_id = smo.module_id
+		LEFT JOIN sys_resource sr ON sm.menu_value = sr.res_value
+	</select>
+	
+	<select id="queryResIdList" resultType="java.lang.Integer">
+		SELECT
+		res_id resId
+		FROM
+		sys_role_res
+		WHERE role_id = #{roleId}
+	</select>
+
+</mapper>

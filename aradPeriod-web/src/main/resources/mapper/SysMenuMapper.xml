@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.web.mapper.SysMenuMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap"
+		type="com.example.demo.web.entity.SysMenu">
+		<id column="menu_id" property="menuId" />
+		<result column="menu_name" property="menuName" />
+		<result column="menu_level" property="menuLevel" />
+		<result column="leaf_flag" property="leafFlag" />
+		<result column="module_id" property="moduleId" />
+		<result column="menu_value" property="menuValue" />
+		<result column="p_menu_id" property="pMenuId" />
+		<result column="menu_sort" property="menuSort" />
+		<result column="menu_icon" property="menuIcon" />
+	</resultMap>
+
+	<select id="queryAllMenuNodes"
+		resultType="com.example.demo.web.entity.Node">
+		SELECT
+		sm.menu_id id,
+		sm.menu_name name,
+		sm.menu_level level,
+		sm.leaf_flag leafFlag,
+		sm.module_id moduleId,
+		sm.menu_value link,
+		sm.p_menu_id parentId,
+		sm.menu_sort menuSort,
+		sm.menu_icon menuIcon
+		FROM
+		sys_menu sm
+	</select>
+
+	<select id="queryUserMenuNodes"
+		resultType="com.example.demo.web.entity.Node">
+		SELECT
+			t.id,
+			t.name,
+			t.level,
+			t.leafFlag,
+			t.moduleId,
+			t.link,
+			t.parentId,
+			t.menuSort,
+			t.menuIcon
+		FROM
+			(SELECT
+				sm.menu_id id,
+				sm.menu_name name,
+				sm.menu_level level,
+				sm.leaf_flag leafFlag,
+				sm.module_id moduleId,
+				sm.menu_value link,
+				sm.p_menu_id parentId,
+				sm.menu_sort menuSort,
+				sm.menu_icon menuIcon
+			FROM sys_user su
+			LEFT JOIN sys_user_role sur ON su.user_id = sur.user_id
+			LEFT JOIN sys_role_res srr ON srr.role_id = sur.role_id
+			LEFT JOIN sys_resource sr ON sr.res_id = srr.res_id
+			LEFT JOIN sys_menu sm ON sm.menu_value = sr.res_value
+			WHERE su.user_id = #{id} AND sr.res_type = 1
+			) AS t
+		GROUP BY id ORDER BY parentId,menuSort
+	</select>
+
+	<select id="queryNodeByPid"
+		resultType="com.example.demo.web.entity.Node">
+		SELECT
+		menu_id menuId,
+		menu_name menuName,
+		menu_level menuLevel,
+		leaf_flag leafFlagId,
+		module_id moduleId,
+		menu_value menuValue,
+		p_menu_id pMenuId,
+		menu_sort menuSort,
+		menu_icon menuIcon,
+		menu_name name,
+		menu_id parentId,
+		menu_name title,
+		menu_id id
+		FROM
+		sys_menu
+		<where>
+			1=1
+			<if test="node.pMenuId != null and node.pMenuId != ''">
+				AND p_menu_id = #{node.pMenuId}
+			</if>
+		</where>
+		ORDER BY menu_sort ASC
+	</select>
+
+	<insert id="insertNode" useGeneratedKeys="true"
+		keyProperty="menuId">
+		INSERT INTO sys_menu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="node.menuName != null and node.menuName != ''">
+				menu_name,
+			</if>
+			<if test="node.menuLevel != null and node.menuLevel != ''">
+				menu_level,
+			</if>
+			leaf_flag,
+			<if test="node.moduleId != null and node.moduleId != ''">
+				module_id,
+			</if>
+			<if test="node.menuValue != null and node.menuValue != ''">
+				menu_value,
+			</if>
+			<if test="node.pMenuId != null and node.pMenuId != ''">
+				p_menu_id,
+			</if>
+			<if test="node.menuSort != null and node.menuSort != ''">
+				menu_sort,
+			</if>
+			<if test="node.menuIcon != null and node.menuIcon != ''">
+				menu_icon,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="node.menuName != null and node.menuName != ''">
+				#{node.menuName},
+			</if>
+			<if test="node.menuLevel != null and node.menuLevel != ''">
+				#{node.menuLevel},
+			</if>
+			#{node.leafFlagId},
+			<if test="node.moduleId != null and node.moduleId != ''">
+				#{node.moduleId},
+			</if>
+			<if test="node.menuValue != null and node.menuValue != ''">
+				#{node.menuValue},
+			</if>
+			<if test="node.pMenuId != null and node.pMenuId != ''">
+				#{node.pMenuId},
+			</if>
+			<if test="node.menuSort != null and node.menuSort != ''">
+				#{node.menuSort},
+			</if>
+			<if test="node.menuIcon != null and node.menuIcon != ''">
+				#{node.menuIcon},
+			</if>
+		</trim>
+	</insert>
+
+	<!--更新菜单节点 -->
+	<update id="updateNode">
+		UPDATE sys_menu
+		<set>
+			<if test="node.menuName != null and node.menuName != ''">
+				menu_name = #{node.menuName},
+			</if>
+			<if test="node.menuLevel != null and node.menuLevel != ''">
+				menu_level = #{node.menuLevel},
+			</if>
+			leaf_flag = #{node.leafFlagId},
+			<if test="node.moduleId != null and node.moduleId != ''">
+				module_id = #{node.moduleId},
+			</if>
+			<if test="node.menuValue != null and node.menuValue != ''">
+				menu_value = #{node.menuValue},
+			</if>
+			<if test="node.pMenuId != null and node.pMenuId != ''">
+				p_menu_id = #{node.pMenuId},
+			</if>
+			<if test="node.menuSort != null and node.menuSort != ''">
+				menu_sort = #{node.menuSort},
+			</if>
+			<if test="node.menuIcon != null and node.menuIcon != ''">
+				menu_icon = #{node.menuIcon},
+			</if>
+		</set>
+		WHERE menu_id = #{node.menuId}
+	</update>
+	
+	<select id="queryMenuValue"
+		resultType="com.example.demo.web.entity.SysMenu">
+		SELECT
+		sm.menu_name menuName,
+		sm.menu_value menuValue
+		FROM
+		sys_menu sm
+	</select>
+
+</mapper>
