@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.common.config.ProConstant;
 import com.example.demo.common.util.VerificationCodeUtil;
-//import com.example.demo.common.util.TokenUse;
 import com.example.demo.web.config.auth.JwtConfig;
 import com.example.demo.web.entity.SysMenu;
 import com.example.demo.web.entity.SysUser;
