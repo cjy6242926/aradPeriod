@@ -17,12 +17,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
  * @since 2020-06-04
  */
 public interface SysModuleMapper extends BaseMapper<SysModule> {
+
 	/**
-	 * 
-	 * @Description:查询模块集合
-	 * @param module
-	 * @return
-	 *
+	 * description TODO
+	 * param [page, query]
+	 * return com.baomidou.mybatisplus.core.metadata.IPage<com.example.demo.web.entity.SysModule>
+	 * author 陈金阳
+	 * createTime 2020/7/31 11:47
 	 */
 	public IPage<SysModule> listModels(Page<SysModule> page, @Param("query") SysModule query);
 }
